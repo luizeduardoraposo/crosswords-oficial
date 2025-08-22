@@ -2,7 +2,7 @@
  * Requisitos atendidos:
  * - Grade 8x8 ocupando quase toda a viewport (85vmin para manter quadrado)
  * - Seleção por clique e arraste; células entram quando cursor cruza 50% da área
- * - Palavras carregadas de words.txt (fetch) e colocadas em qualquer direção (8 dirs + invertidas)
+ * - Palavras carregadas de words-pt.txt (fetch) e colocadas em qualquer direção (8 dirs + invertidas)
  * - Palavras podem compartilhar letras (mesclagem)
  * - Seleção pode fazer curvas (palavras compostas por caminho contíguo livre)
  * - Flash < 1s nas células selecionadas
@@ -43,13 +43,13 @@ function createCells() {
 
 async function loadWords() {
   try {
-    const res = await fetch('words.txt');
+    const res = await fetch('words-pt.txt');
     const text = await res.text();
     words = text.split(/\r?\n/).map(w => w.trim().toUpperCase()).filter(Boolean).filter(w => w.length <= SIZE);
     // Embaralhar
     for (let i = words.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1));[words[i], words[j]] = [words[j], words[i]]; }
   } catch (e) {
-    console.error('Falha ao carregar words.txt', e);
+    console.error('Falha ao carregar words-pt.txt', e);
   }
 }
 
